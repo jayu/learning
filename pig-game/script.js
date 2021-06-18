@@ -13,6 +13,9 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
+const playerActiveClass = 'player--active';
+const playerWinnerClass = 'player--winner';
+
 let scores, currentScore, activePlayer, playing;
 
 // Starting conditions
@@ -28,10 +31,10 @@ const init = function () {
   current1El.textContent = 0;
 
   diceEl.classList.add('hidden');
-  player0El.classList.remove('player--winner');
-  player1El.classList.remove('player--winner');
-  player0El.classList.add('player--active');
-  player1El.classList.remove('player--active');
+  player0El.classList.remove(winerPlayerActive);
+  player1El.classList.remove(winerPlayerActive);
+  player0El.classList.add(playerActiveClass);
+  player1El.classList.remove(playerActiveClass);
 };
 init();
 
@@ -39,8 +42,8 @@ const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   currentScore = 0;
   activePlayer = activePlayer === 0 ? 1 : 0;
-  player0El.classList.toggle('player--active');
-  player1El.classList.toggle('player--active');
+  player0El.classList.toggle(playerActiveClass);
+  player1El.classList.toggle(playerActiveClass);
 };
 
 // Rolling dice functionality
@@ -82,10 +85,10 @@ btnHold.addEventListener('click', function () {
       diceEl.classList.add('hidden');
       document
         .querySelector(`.player--${activePlayer}`)
-        .classList.add('player--winner');
+        .classList.add(winerPlayerActive);
       document
         .querySelector(`.player--${activePlayer}`)
-        .classList.remove('player--active');
+        .classList.remove(playerActiveClass);
     } else {
       // 3. Switch to the next player
       switchPlayer();
