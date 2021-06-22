@@ -1,4 +1,7 @@
 import React from 'react';
+import './Result2.css';
+import './Result.css';
+import { dataRow2 } from './Results.module.css';
 
 const Result = (props) => {
   const { date, city, sunrise, sunset, temp, pressure, wind, err } =
@@ -12,10 +15,10 @@ const Result = (props) => {
 
     content = (
       <div>
-        <h3>
+        <h3 className="dataRow">
           Wyniki wyszukiwania dla <em>{city}</em>
         </h3>
-        <h4>Dane dla dnia i godziny: {date}</h4>
+        <h4 className={dataRow2}>Dane dla dnia i godziny: {date}</h4>
         <h4>Aktualna temperatura: {temp}</h4>
         <h4>Wschód słońca: {sunriseTime}</h4>
         <h4>Zachod słońca: {sunsetTime}</h4>
